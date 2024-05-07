@@ -1,13 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://nr6ynd4ff3na"]
 
-[ext_resource type="Script" path="res://assets/cards/CardBase.gd" id="1_1k11q"]
+[ext_resource type="Script" path="res://assets/cards/CardBase.gd" id="1_fe4ec"]
 
 [node name="CardBase" type="MarginContainer"]
 offset_right = 250.0
 offset_bottom = 350.0
 pivot_offset = Vector2(125, 175)
 mouse_default_cursor_shape = 2
-script = ExtResource("1_1k11q")
+script = ExtResource("1_fe4ec")
 
 [node name="Card" type="Sprite2D" parent="."]
 texture_filter = 1

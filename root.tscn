@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://bo8wrbqicfxhm"]
+[gd_scene load_steps=3 format=3 uid="uid://bo8wrbqicfxhm"]
+
+[ext_resource type="Script" path="res://Playarea.gd" id="1_ehkkb"]
+[ext_resource type="Script" path="res://PlayerHand.gd" id="2_06u1t"]
 
 [node name="Payarea" type="Node2D"]
+script = ExtResource("1_ehkkb")
+
+[node name="PlayerHand" type="Node2D" parent="."]
+script = ExtResource("2_06u1t")

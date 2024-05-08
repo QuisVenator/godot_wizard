@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://assets/cards/CardBase.gd" id="1_fe4ec"]
 
 [node name="CardBase" type="MarginContainer"]
-offset_right = 250.0
-offset_bottom = 350.0
-pivot_offset = Vector2(125, 175)
+offset_right = 100.0
+offset_bottom = 140.0
+pivot_offset = Vector2(50, 70)
 mouse_default_cursor_shape = 2
 script = ExtResource("1_fe4ec")
 

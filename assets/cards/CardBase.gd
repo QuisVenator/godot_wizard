@@ -1,11 +1,11 @@
 extends MarginContainer
-class_name CardBase
 
 var CardDatabase = preload("res://assets/cards/CardDatabase.gd")
 var CardId = CardDatabase.BACK
-var CardInfo;
+var CardInfo
+var original_z_index = 0
 
-func setup(card_id: int) -> CardBase:
+func setup(card_id: int):
 	CardId = card_id
 	return self
 
@@ -25,7 +25,14 @@ func _process(delta):
 	pass
 
 func mouse_over():
-	$Card.modulate = Color(1, 1, 1, 0.8)
+	get_parent().highlight(self)
+	position = position - (size * 0.05).rotated(rotation) + Vector2(0, -size[1]/8).rotated(rotation)
+	$Card.scale = size/$Card.texture.get_size() * 1.1
+	self.original_z_index = $Card.z_index
+	$Card.z_index = 3000
 
 func mouse_exit():
-	$Card.modulate = Color(1, 1, 1, 1)
+	get_parent().unhighlight()
+	position = position + (size * 0.05).rotated(rotation) + Vector2(0, size[1]/8).rotated(rotation)
+	$Card.scale = size/$Card.texture.get_size() * 1
+	$Card.z_index = self.original_z_index

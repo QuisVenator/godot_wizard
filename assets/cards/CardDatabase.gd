@@ -65,6 +65,7 @@ enum {
 	WIZARD_4,
 }
 
+# TODO: Add pngs for jester and wizard
 const DATA = [
 	{
 		"suite": null,

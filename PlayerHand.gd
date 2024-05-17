@@ -1,9 +1,11 @@
 extends Node2D
 
 @onready var hand_center = Vector2(get_viewport().size) * Vector2(0.5, 2.65)
+# rad1 = card.size[0] / 2
 @onready var rad2 = get_viewport().size[1] * 4
 
 var cards = []
+var selected_card = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,8 +14,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
+	if Input.is_action_just_pressed("rightclick") and selected_card != null:
+		remove_card(selected_card)
+	elif Input.is_action_just_pressed("leftclick") and selected_card != null:
+		play_card(selected_card)
 
 func highlight(card):
 	for c in get_children():
@@ -21,6 +25,12 @@ func highlight(card):
 			c.set_modulate(Color(0.5, 0.5, 0.5))
 		else:
 			c.set_modulate(Color(1, 1, 1))
+
+func select_card(card):
+	selected_card = card
+
+func deselect_card():
+	selected_card = null
 
 func unhighlight():
 	for c in get_children():
@@ -33,9 +43,21 @@ func add_card(card):
 	print("Card added to scene.")
 
 func remove_card(card):
+	if selected_card == card:
+		deselect_card()
+
 	cards.erase(card)
 	remove_child(card)
+	# Delete node
+	card.queue_free()
+	arrange_cards()
 	print("Card removed from scene.")
+
+func play_card(card):
+	$"../PlayedCards".play_card(card)
+	cards.erase(card)
+	arrange_cards()
+	print("Card played.")
 
 func arrange_cards():
 	var num_cards = cards.size()

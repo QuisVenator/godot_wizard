@@ -4,6 +4,9 @@ var CardDatabase = preload("res://assets/cards/CardDatabase.gd")
 var CardId = CardDatabase.BACK
 var CardInfo
 var original_z_index = 0
+static var mouse_over_card = null
+static var next_mouse_over_card = null
+
 
 func setup(card_id: int):
 	CardId = card_id
@@ -25,14 +28,32 @@ func _process(delta):
 	pass
 
 func mouse_over():
+	if mouse_over_card != null:
+		next_mouse_over_card = self
+		return
+	
+	mouse_over_card = self
 	get_parent().highlight(self)
+	get_parent().select_card(self)
 	position = position - (size * 0.05).rotated(rotation) + Vector2(0, -size[1]/8).rotated(rotation)
 	$Card.scale = size/$Card.texture.get_size() * 1.1
 	self.original_z_index = $Card.z_index
 	$Card.z_index = 3000
 
 func mouse_exit():
+	if mouse_over_card != self:
+		if next_mouse_over_card == self:
+			next_mouse_over_card = null
+		return
+
+	mouse_over_card = null
 	get_parent().unhighlight()
+	get_parent().deselect_card()
 	position = position + (size * 0.05).rotated(rotation) + Vector2(0, size[1]/8).rotated(rotation)
 	$Card.scale = size/$Card.texture.get_size() * 1
 	$Card.z_index = self.original_z_index
+
+	if next_mouse_over_card != null:
+		var temp = next_mouse_over_card
+		next_mouse_over_card = null
+		temp.mouse_over()

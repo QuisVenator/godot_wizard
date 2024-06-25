@@ -54,6 +54,11 @@ func remove_card(card):
 	print("Card removed from scene.")
 
 func play_card(card):
+	if selected_card == card:
+		deselect_card()
+
+	card.disconnect("mouse_entered", card.mouse_over)
+	card.disconnect("mouse_exited", card.mouse_exit)
 	$"../PlayedCards".play_card(card)
 	cards.erase(card)
 	arrange_cards()

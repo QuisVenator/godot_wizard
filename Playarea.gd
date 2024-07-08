@@ -10,9 +10,16 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	# Handle inputs
 	if Input.is_action_just_pressed("ui_accept"):
 		var card = card_base.instantiate().setup((randi_range(3, 53)))
 
 		$PlayerHand.add_card(card)
+
+		# TODO: Remove this
+		var other_players = get_node("./OtherPlayers")
+		if other_players.player_count < 5:
+			other_players.add_player()
+		else:
+			other_players.deal_cards(1)

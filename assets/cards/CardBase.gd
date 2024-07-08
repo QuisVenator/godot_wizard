@@ -24,7 +24,7 @@ func _ready():
 	$Card.scale = size/$Card.texture.get_size()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func mouse_over():

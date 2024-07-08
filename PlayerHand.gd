@@ -13,7 +13,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("rightclick") and selected_card != null:
 		remove_card(selected_card)
 	elif Input.is_action_just_pressed("leftclick") and selected_card != null:

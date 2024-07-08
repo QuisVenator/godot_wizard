@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bo8wrbqicfxhm"]
+[gd_scene load_steps=7 format=3 uid="uid://bo8wrbqicfxhm"]
 
 [ext_resource type="Script" path="res://Playarea.gd" id="1_ehkkb"]
 [ext_resource type="Script" path="res://PlayerHand.gd" id="2_06u1t"]
 [ext_resource type="Script" path="res://PlayedCards.gd" id="3_kvgn8"]
+[ext_resource type="Script" path="res://OtherPlayers.gd" id="4_gghal"]
+[ext_resource type="PackedScene" uid="uid://dain3y2esmf3f" path="res://player.tscn" id="5_3j83t"]
+[ext_resource type="Script" path="res://OtherHand.gd" id="6_j233n"]
 
 [node name="Payarea" type="Node2D"]
 script = ExtResource("1_ehkkb")
@@ -13,3 +16,33 @@ script = ExtResource("2_06u1t")
 [node name="PlayedCards" type="Node2D" parent="."]
 position = Vector2(576, 324)
 script = ExtResource("3_kvgn8")
+
+[node name="OtherPlayers" type="Node" parent="."]
+script = ExtResource("4_gghal")
+
+[node name="Player1" parent="OtherPlayers" instance=ExtResource("5_3j83t")]
+
+[node name="Player2" parent="OtherPlayers" instance=ExtResource("5_3j83t")]
+
+[node name="Player3" parent="OtherPlayers" instance=ExtResource("5_3j83t")]
+
+[node name="Player4" parent="OtherPlayers" instance=ExtResource("5_3j83t")]
+
+[node name="Player5" parent="OtherPlayers" instance=ExtResource("5_3j83t")]
+
+[node name="Hand1" type="Node2D" parent="OtherPlayers"]
+position = Vector2(117, 146)
+script = ExtResource("6_j233n")
+handnum = 1
+
+[node name="Hand2" type="Node2D" parent="OtherPlayers"]
+script = ExtResource("6_j233n")
+
+[node name="Hand3" type="Node2D" parent="OtherPlayers"]
+script = ExtResource("6_j233n")
+
+[node name="Hand4" type="Node2D" parent="OtherPlayers"]
+script = ExtResource("6_j233n")
+
+[node name="Hand5" type="Node2D" parent="OtherPlayers"]
+script = ExtResource("6_j233n")

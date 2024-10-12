@@ -40,6 +40,7 @@ func add_card(card):
 	cards.append(card)
 	arrange_cards()
 	add_child(card)
+	card.set_default_cursor_shape(Control.CURSOR_POINTING_HAND)
 	print("Card added to scene.")
 
 func remove_card(card):
@@ -59,6 +60,7 @@ func play_card(card):
 
 	card.disconnect("mouse_entered", card.mouse_over)
 	card.disconnect("mouse_exited", card.mouse_exit)
+	card.set_default_cursor_shape(Control.CURSOR_ARROW)
 	$"../PlayedCards".play_card(card)
 	cards.erase(card)
 	arrange_cards()

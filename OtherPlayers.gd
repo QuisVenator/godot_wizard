@@ -5,8 +5,8 @@ var player_count = 0
 @onready var pos_left =  Vector2(get_viewport().size) * Vector2(0.05, 0.3)
 @onready var pos_right = Vector2(get_viewport().size) * Vector2(0.95, 0.3)
 @onready var pos_top_center = Vector2(get_viewport().size) * Vector2(0.5, 0.08)
-@onready var pos_top_left = Vector2(get_viewport().size) * Vector2(0.2, 0.08)
-@onready var pos_top_right = Vector2(get_viewport().size) * Vector2(0.8, 0.08)
+@onready var pos_top_left = Vector2(get_viewport().size) * Vector2(0.15, 0.08)
+@onready var pos_top_right = Vector2(get_viewport().size) * Vector2(0.85, 0.08)
 
 @onready var handpositions = [
 	[],
@@ -86,7 +86,7 @@ func add_player():
 func update_player_count():
 	for i in range(player_count):
 		other_player_hands[i].set_global_position(handpositions[player_count][i])
-		# other_player_hands[i].set_rotation_degrees(handrotations[player_count][i])
+		other_player_hands[i].rotation_for_cards = deg_to_rad(handrotations[player_count][i])
 
 func remove_player():
 	# TODO: implement
